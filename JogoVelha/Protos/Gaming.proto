@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package JogoVelha;
+
+//Gaming Service
+service Gaming {
+    //Sends welcome message
+    rpc SayWelcome (UserRegistry) returns (WelcomeReply) {}
+
+    //Function to make a board move
+    rpc makeMove (UserRegistry) returns (Board) {}
+
+    //Function for a draw
+    rpc setDraw (Board) returns (Board) {}
+}
+
+//User Registry to store user data
+message UserRegistry{
+    string name = 1;
+    int32 boardXMove = 2;
+    int32 boardYMove = 3;
+    string piece = 4;
+}
+
+//User play moveset
+message UserMove{
+    UserRegistry user = 1;
+}
+
+//Response message to welcome function
+message WelcomeReply{
+    string message = 1;
+}
+
+message Board{
+    string pieces = 1;
+}
